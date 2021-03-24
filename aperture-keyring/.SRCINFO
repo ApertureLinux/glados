@@ -1,0 +1,15 @@
+pkgbase = glados-keyring
+	pkgdesc = GLADOS PGP keyring
+	pkgver = 20210320
+	pkgrel = 2
+	url = https://github.com/ApertureLinux/keyring
+	install = glados-keyring.install
+	arch = any
+	license = GPL
+	depends = archlinux-keyring
+	optdepends = pkgstats: install to submit package usage statistics
+	source = keyring-20210320-2.tar.gz::https://github.com/ApertureLinux/keyring/archive/20210320-2.tar.gz
+	md5sums = 04030ba78e6694d0ca123c683c9bfbcb
+
+pkgname = glados-keyring
+
