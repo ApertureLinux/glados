@@ -1,0 +1,19 @@
+# Maintiner: Zach Osman <zosman@aperturelinux.org>
+
+pkgname=aperture-hooks
+pkgdesc="Hooks for Aperture Linux"
+pkgver=0.0.1
+pkgrel=1
+arch=('any')
+license=('GPL')
+depends=('pacman' 'glados-keyring')
+install=./aperture-hooks.sh
+source=()
+package() {
+	cd $srcdir 
+
+	#copy hooks to $pkgdir/etc/pacman.d/hooks/*
+}
+
+
+
