@@ -1,5 +1,5 @@
-# Maintainer: Pedro H. Lara Campos <root@pedrohlc.com>
-# Thanks for archlinuxcn's package that I've used as template!
+# Maintiner: Zach Osman <zosman@aperturelinux.org>
+# Thanks for garudalinux package that I've used as template!
 
 pkgname='glados-keyring'
 pkgver='20210320'
