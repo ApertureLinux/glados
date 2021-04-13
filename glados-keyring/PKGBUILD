@@ -1,0 +1,22 @@
+# Maintiner: Zach Osman <zosman@aperturelinux.org>
+
+
+pkgname=glados-keyring
+pkgver=20210413
+pkgrel=4
+pkgdesc='Arch Linux PGP keyring'
+arch=(any)
+url='https://github.com/ApertureLinux/glados-keyring.git'
+license=(GPL)
+install=glados-keyring.sh
+source=("https://github.com/ApertureLinux/${pkgname}/archive/refs/tags/${pkgver}-${pkgrel}.tar.gz")
+sha256sums=('91afe95bf73a0f77f173927b4e033b7ce7ad080b10332d972639a18b70b682bd')
+
+validpgpkeys=(
+  'F015C6B247D6243360B742F994EBB7A5965B9914'  # Zach Osman <zosman@aperturelinux.org>
+)
+
+package() {
+  cd $pkgname-$pkgver-$pkgrel
+  make PREFIX=/usr DESTDIR="$pkgdir" install
+}

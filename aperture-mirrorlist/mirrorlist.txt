@@ -1,0 +1,1 @@
+Server = http://mirror.aperturelinux.org/latest

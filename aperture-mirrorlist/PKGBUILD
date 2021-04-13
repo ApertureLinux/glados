@@ -1,0 +1,28 @@
+# Maintiner: Zach Osman <zosman@aperturelinux.org>
+
+pkgname=aperture-mirrorlist
+pkgver=20210421
+pkgrel=3
+pkgdesc="GLADOS mirrorlist, used by pacman"
+arch=('any')
+license=('GPL')
+depends=('pacman' 'glados-keyring')
+backup=(etc/pacman.d/aperture-mirrorlist)
+source=('./mirrorlist.txt' './aperture-mirrorlist.sh')
+install=./aperture-mirrorlist.sh
+
+package() {
+  local conf=/etc/pacman.conf
+
+  if ! grep -q "glados" "$conf"; then
+    sed -i '/^\[community\]/i \\[glados\]\nInclude=/etc/pacman.d/aperture-mirrorlist\n' $conf
+  fi
+
+  mkdir -p "$pkgdir/etc/pacman.d"
+  install -m644 "$srcdir/mirrorlist.txt" "$pkgdir/etc/pacman.d/aperture-mirrorlist"
+}
+
+sha256sums=(
+'199e82f78ca00f97e682dd0c7c30f7b19caf474ee5496e3c7a816d5d04b84fab'
+'797ac2b5f97225d547eb3197053ff94b124ed27a46a66b8e9272fc88e3da97a3'
+)
