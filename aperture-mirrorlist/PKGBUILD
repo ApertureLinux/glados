@@ -12,11 +12,11 @@ source=('./mirrorlist.txt' './aperture-mirrorlist.sh')
 install=./aperture-mirrorlist.sh
 
 package() {
-  local conf=/etc/pacman.conf
+  # local conf=/etc/pacman.conf
 
-  if ! grep -q "glados" "$conf"; then
-    sed -i '/^\[community\]/i \\[glados\]\nInclude=/etc/pacman.d/aperture-mirrorlist\n' $conf
-  fi
+  # if ! grep -q "glados" "$conf"; then
+  #   sed -i '/^\[community\]/i \\[glados\]\nInclude=/etc/pacman.d/aperture-mirrorlist\n' $conf
+  # fi
 
   mkdir -p "$pkgdir/etc/pacman.d"
   install -m644 "$srcdir/mirrorlist.txt" "$pkgdir/etc/pacman.d/aperture-mirrorlist"

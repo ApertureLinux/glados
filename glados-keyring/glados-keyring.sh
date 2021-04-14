@@ -8,3 +8,4 @@ post_install() {
 	if [ -x usr/bin/pacman-key ]; then
 		post_upgrade
 	fi
+}
