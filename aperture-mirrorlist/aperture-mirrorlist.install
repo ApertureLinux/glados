@@ -1,5 +1,3 @@
-#!/bin/bash
-
 add_repos(){
     #Adding GLADOS
     local conf=/etc/pacman.conf

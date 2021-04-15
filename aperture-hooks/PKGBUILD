@@ -1,12 +1,12 @@
 # Maintiner: Zach Osman <zosman@aperturelinux.org>
 
 pkgname=aperture-hooks
-pkgver=20210421
+pkgver=20210415
 pkgrel=1
 pkgdesc="Hooks for Aperture Linux"
 arch=('any')
 license=('GPL')
 depends=('pacman' 'glados-keyring')
-install=./aperture-hooks.sh
-source=(./aperture-hooks.sh)
+install=aperture-hooks.install
+source=()
 sha256sums=('a90bf6a72575973a61ec37727961cfad561cf5a2b936eea9b1e526845867ca51')
