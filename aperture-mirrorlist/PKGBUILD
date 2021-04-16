@@ -2,13 +2,13 @@
 
 pkgname=aperture-mirrorlist
 pkgver=20210414
-pkgrel=1
+pkgrel=2
 pkgdesc="GLADOS mirrorlist, used by pacman"
 arch=('any')
 license=('GPL')
 depends=('pacman' 'glados-keyring')
 backup=(etc/pacman.d/aperture-mirrorlist)
-source=('mirrorlist.txt' 'aperture-mirrorlist.install')
+source=('mirrorlist.txt')
 install=aperture-mirrorlist.install
 
 package() {
@@ -18,5 +18,4 @@ package() {
 
 sha256sums=(
     '199e82f78ca00f97e682dd0c7c30f7b19caf474ee5496e3c7a816d5d04b84fab'
-    '05620d6f387d9d528c8e71141a37c1cb23d14a7c021034802cab7fe59dedb911'
 )
