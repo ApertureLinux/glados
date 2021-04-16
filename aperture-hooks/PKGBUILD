@@ -9,4 +9,3 @@ license=('GPL')
 depends=('pacman' 'glados-keyring')
 install=aperture-hooks.install
 source=()
-sha256sums=('a90bf6a72575973a61ec37727961cfad561cf5a2b936eea9b1e526845867ca51')

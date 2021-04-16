@@ -10,7 +10,7 @@ url='https://github.com/ApertureLinux/glados-keyring.git'
 license=(GPL)
 install=glados-keyring.install
 source=("https://github.com/ApertureLinux/${pkgname}/archive/refs/tags/${pkgver}.tar.gz")
-sha256sums=('91afe95bf73a0f77f173927b4e033b7ce7ad080b10332d972639a18b70b682bd')
+sha256sums=('1eeb48fdb74be5dc2315674b14748cbff032e8b24ed05d4146eeef6d1c0e2aee')
 
 validpgpkeys=(
     'F015C6B247D6243360B742F994EBB7A5965B9914'  # Zach Osman <zosman@aperturelinux.org>
