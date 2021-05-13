@@ -1,0 +1,20 @@
+# Maintainer : Zach Osman <zach@aperturelinux.org>
+
+pkgname=aperture-calamares
+pkgver=0.1.0
+pkgrel=1
+pkgdesc='Aperture Calamares Config'
+arch=('x86_64')
+license=('GPL2')
+source=('calamares.tar.gz')
+sha256sums=('f6c341754ed7f32121e6722aa2f829bc077d5f0fdb71cd21a6e7e31bb78597f0')
+
+# prepare() {
+#     tar cvf calamares.tar.gz ./calamares
+# }
+
+package() {
+    mkdir -p "$pkgdir/usr/share/calamares"
+    install -d -m644 "$srcdir/calamares" "$pkgdir/usr/share/calamares/"
+}
+
