@@ -164,7 +164,7 @@ strings:
 images:
     # productBanner:       "banner.png"
     productIcon:         "Aperture_Science.svg"
-    productLogo:         "Aperture_Science.svg"
+    productLogo:         "Aperture_Linux.svg"
     # productWallpaper:    "wallpaper.png"
     productWelcome:      "Aperture_Science.svg"
 
