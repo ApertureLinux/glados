@@ -1,98 +1,120 @@
 #!/bin/bash
 
-_make_pacstrap_calamares(){
+PACSTRAP="/usr/bin/pacstrap_calamares"
 
-if [ ! -f "/usr/bin/pacstrap_calamares" ]
+make_pacstrap_calamares() {
+    if [ -f "$PACSTRAP" ] ; then
+        return
+    fi
+    sed -e '/chroot_add_mount proc/d'			\
+        -e '/chroot_add_mount sys/d'			\
+        -e '/ignore_error chroot_maybe_add_mount/d'	\
+        -e '/chroot_add_mount udev/d'			\
+        -e '/chroot_add_mount devpts/d'			\
+        -e '/chroot_add_mount shm/d'			\
+        -e '/chroot_add_mount \/run/d'			\
+        -e '/chroot_add_mount tmp/d'			\
+        -e '/efivarfs \"/d'				\
+           /usr/bin/pacstrap > "$PACSTRAP"
 
-then
-
-sed -e '/chroot_add_mount proc/d'           \
--e '/chroot_add_mount sys/d'                \
--e '/ignore_error chroot_maybe_add_mount/d' \
--e '/chroot_add_mount udev/d'               \
--e '/chroot_add_mount devpts/d'             \
--e '/chroot_add_mount shm/d'                \
--e '/chroot_add_mount \/run/d'              \
--e '/chroot_add_mount tmp/d'                \
--e '/efivarfs \"/d'                         \
-   /usr/bin/pacstrap >/usr/bin/pacstrap_calamares
-
-chmod +x /usr/bin/pacstrap_calamares
-
-fi
-
+    chmod +x "$PACSTRAP"
 }
 
-_update_db(){
+update_db() {
+    # Update database step by step
+    # For iso only
+    # Necessary for old ISOs
+    if [ -f "/tmp/upatedb_run_once" ] ; then
+        return
+    fi
 
-# Update database step by step
-# For iso only
-# Necessary for old ISOs
+    haveged -w 1024
+    pacman-key --init
+    pkill haveged
+    pacman-key --populate
+    cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
 
-haveged -w 1024
-pacman-key --init
-pkill haveged
-pacman-key --populate
-_keyserver
-cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
+    if [ -x /usr/bin/update-mirrorlist ] ; then
+        /usr/bin/update-mirrorlist
+    else
+        reflector --verbose	\
+            --age 1		\
+            --fastest 10	\
+            --latest 70		\
+            --protocol https	\
+            --sort rate		\
+            --save /etc/pacman.d/mirrorlist
+    fi
 
-RANK_MIRRORS="/usr/bin/update-mirrorlist"
-BEST_MIRRORS="reflector --verbose -a1 -f10 -l70 -phttps --sort rate --save /etc/pacman.d/mirrorlist"
-
-if [ -f $RANK_MIRRORS ]
-then
-    $RANK_MIRRORS
-else
-    $BEST_MIRRORS
-fi
-
-# After above no need to run cmds again when launch calamares a second time
-touch /tmp/run_once
-   
+    # No need to update db multiple times
+    touch /tmp/upatedb_run_once
 }
 
-_run(){
-
-if [ ! -f "/tmp/run_once" ]
-then
-    _update_db
-fi
-  
-# Install base system + endeavouros packages + copy necessary config files
-
-_packages_array=( base sudo grub aperture-mirrorlist aperture-keyring aperture-neofetch xterm )
-
-_oldbase_array=( mkinitcpio mkinitcpio-busybox mkinitcpio-nfs-utils diffutils inetutils jfsutils less logrotate man-db man-pages mdadm nano netctl perl s-nail sysfsutils systemd-sysvcompat texinfo usbutils vi which linux linux-firmware device-mapper efibootmgr )
-
-_filesystem_array=( cryptsetup e2fsprogs f2fs-tools btrfs-progs lvm2 reiserfsprogs xfsprogs )
-
-_chroot_path=$(cat /tmp/chrootpath.txt) # can't be stored as string
-
-_pacstrap="/usr/bin/pacstrap_calamares"
-
-for pkgs in "${_packages_array[*]}" "${_oldbase_array[*]}" "${_filesystem_array[*]}"
-do
-    $_pacstrap $_chroot_path $pkgs
-done
-
-_files_to_copy=(
-
-/usr/bin/{chrooted_cleaner_script,cleaner_script}.sh
-/etc/pacman.conf
-/etc/pacman.d/mirrorlist
-/tmp/run_once
-/etc/default/grub
-
-)
-
-for copy_files in "${_files_to_copy[@]}"
-do
-    rsync -vaRI $copy_files $_chroot_path
-done
-
+setup() {
+    make_pacstrap_calamares
+    update_db
 }
 
-############ SCRIPT STARTS HERE ############
-_make_pacstrap_calamares
-_run
-############ SCRIPT ENDS HERE ##############
+run() {
+    packages=(
+        # base
+        base
+        linux
+        linux-firmware
+        mkinitcpio
+        mkinitcpio-busybox
+        efibootmgr
+        grub
+        device-mapper
+        aperture-mirrorlist
+        aperture-keyring
+
+        # important utils
+        sudo
+        base-devel
+        xterm
+        diffutils
+        inetutils
+        less
+        man-db
+        man-pages
+        usbutils
+
+        # file system utils
+        cryptsetup
+        e2fsprogs
+        f2fs-tools
+        btrfs-progs
+        lvm2
+        reiserfsprogs
+        xfsprogs
+        jfsutils
+        mkinitcpio-nfs-utils
+        sysfsutils
+        mdadm
+
+        # editors
+        vim
+        neovim
+        nano
+
+        # candy
+        aperture-neofetch
+        perl
+    )
+
+    chrootpath=$(cat /tmp/chrootpath.txt)
+    "$PACSTRAP" "$chrootpath" "${packages[@]}"
+
+    rsync -vaRI					\
+        /usr/bin/chrooted_cleaner_script.sh	\
+        /usr/bin/cleaner_script.sh		\
+        /etc/pacman.conf			\
+        /etc/pacman.d/mirrorlist		\
+        /tmp/run_once				\
+        /etc/default/grub			\
+        "$chrootpath"
+}
+
+setup
+run
