@@ -67,7 +67,7 @@ run() {
         grub
         device-mapper
         aperture-mirrorlist
-        aperture-keyring
+        glados-keyring
 
         # important utils
         sudo
