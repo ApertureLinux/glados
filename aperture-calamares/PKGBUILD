@@ -6,14 +6,15 @@ pkgrel=1
 pkgdesc='Aperture Calamares Config'
 arch=('x86_64')
 license=('GPL2')
-source=("file://$PWD/calamares")
-noextract=("file://$PWD/calamares")
-sha256sums=('SKIP')
+depends=('calamares')
+_commit="6888f30bb73705e19441dbb5642a9c01a3d61f28"
+source=("https://github.com/ApertureLinux/aperture-calamares/archive/${_commit}.zip")
+sha256sums=('177f24219b8fd64e2202ffc8b49fb6e567024556dc51f00db170b5d6083dc5dd')
 
 package() {
     mkdir -p "$pkgdir/usr/share/calamares"
-    mkdir -p "$pkgdir/lib/calamares/modules/pacstrap"
+    mkdir -p "$pkgdir/usr/lib/calamares/modules/pacstrap"
 
-    cp -r "$srcdir/calamares/usr/share/calamares" "$pkgdir/usr/share/calamares/"
-    cp -r "$srcdir/calamares/usr/lib/calamares/modules/pacstrap" "$pkgdir/usr/lib/calamares/modules/pacstrap/"
+    /bin/cp -rf "$srcdir/aperture-calamares-${_commit}/share/calamares" "$pkgdir/usr/share/"
+    /bin/cp -rf "$srcdir/aperture-calamares-${_commit}/lib/calamares/modules/pacstrap" "$pkgdir/usr/lib/calamares/modules/"
 }
