@@ -1,7 +1,7 @@
 # Maintainer : Zach Osman <zach@aperturelinux.org>
 
 pkgname=aperture-calamares
-pkgver=0.1.0
+pkgver=0.1.1
 pkgrel=1
 pkgdesc='Aperture Calamares Config'
 arch=('x86_64')
