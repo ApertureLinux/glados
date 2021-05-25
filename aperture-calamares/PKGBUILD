@@ -7,9 +7,9 @@ pkgdesc='Aperture Calamares Config'
 arch=('x86_64')
 license=('GPL2')
 depends=('calamares')
-_commit="6888f30bb73705e19441dbb5642a9c01a3d61f28"
+_commit="b7b08601c696d5a6ec9181a6f38d38e8abc0acf2"
 source=("https://github.com/ApertureLinux/aperture-calamares/archive/${_commit}.zip")
-sha256sums=('177f24219b8fd64e2202ffc8b49fb6e567024556dc51f00db170b5d6083dc5dd')
+sha256sums=('af7642fed9ac00ba5e2f136a67702c96c7c474379cd36f7e81cf9ff361995afe')
 
 package() {
     mkdir -p "$pkgdir/usr/share/calamares"
