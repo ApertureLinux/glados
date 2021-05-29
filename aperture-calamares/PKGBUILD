@@ -2,7 +2,7 @@
 
 pkgname=aperture-calamares
 pkgver=0.1.7
-pkgrel=1
+pkgrel=2
 pkgdesc='Aperture Calamares Config'
 arch=('x86_64')
 license=('GPL2')
@@ -12,9 +12,5 @@ source=("https://github.com/ApertureLinux/aperture-calamares/archive/${_commit}.
 sha256sums=('SKIP')
 
 package() {
-    mkdir -p "$pkgdir/usr/share/calamares"
-    mkdir -p "$pkgdir/usr/lib/calamares/modules/pacstrap"
-
-    /bin/cp -rf "$srcdir/aperture-calamares-${_commit}/share/calamares" "$pkgdir/usr/share/"
-    /bin/cp -rf "$srcdir/aperture-calamares-${_commit}/lib/calamares/modules/pacstrap" "$pkgdir/usr/lib/calamares/modules/"
+    /bin/cp -rf "$srcdir/aperture-calamares-${_commit}/*/" "$pkgdir/"
 }
