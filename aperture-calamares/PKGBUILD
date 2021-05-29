@@ -2,12 +2,12 @@
 
 pkgname=aperture-calamares
 pkgver=0.1.7
-pkgrel=3
+pkgrel=4
 pkgdesc='Aperture Calamares Config'
 arch=('x86_64')
 license=('GPL2')
 depends=('calamares')
-_commit="76e26d689a6fac641aad47e3b2c77d85488e16e2"
+_commit="fbd9b3ccc1dc71d8f6ecc54a34a78990e79b0423"
 source=("https://github.com/ApertureLinux/aperture-calamares/archive/${_commit}.zip")
 sha256sums=('SKIP')
 
