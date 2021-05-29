@@ -1,10 +1,10 @@
-# Maintener : Zach Osman <zach@aperturelinux.org>
+# Maintainer : Zach Osman <zach@aperturelinux.org>
 
 pkgname=calamares
 pkgver=3.2.39.3
 pkgrel=1
 pkgdesc='Distribution-independent installer framework (development version)'
-arch=('i686' 'x86_64')
+arch=('x86_64')
 url="https://github.com/calamares/calamares"
 license=('GPL3')
 conflicts=('calamares' 'calamares-dev')
