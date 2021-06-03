@@ -1,0 +1,18 @@
+# Maintainer : Zach Osman <zach@aperturelinux.org>
+
+pkgname=aperture-wallpapers
+pkgver=0.1.0
+pkgrel=2
+pkgdesc='Wallpapers for Aperture Linux'
+arch=(any)
+license=(custom:CC0)
+_commit="ea7a0dff47eb0a169d60989840a8d95a7b1f48cd"
+source=("https://github.com/ApertureLinux/aperture-wallpapers/archive/${_commit}.zip")
+sha256sums=('3f7f7b457cf0cbffa469431145cc6e7a7ea87246354728ed04002ba8c618ef45')
+
+package() {
+  cd "$pkgname-${_commit}"
+  install -Dm644 -t "$pkgdir/usr/share/backgrounds/aperturelinux/" img/*
+  install -Dm644 -t "$pkgdir/usr/share/gnome-background-properties/" aperture-backgrounds.xml
+  install -Dm644 -t "$pkgdir/usr/share/licenses/$pkgname/" LICENSE
+}

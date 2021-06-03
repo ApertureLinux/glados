@@ -1,4 +1,4 @@
-# Maintainer: Zach Osman <zosman@aperturelinux.org>
+# Maintainer: Zach Osman <zach@aperturelinux.org>
 
 pkgname=aperture-neofetch
 pkgver=7.1.0
