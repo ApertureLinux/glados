@@ -2,7 +2,7 @@
 
 pkgname=aperture-wallpapers
 pkgver=0.1.0
-pkgrel=2
+pkgrel=3
 pkgdesc='Wallpapers for Aperture Linux'
 arch=(any)
 license=(custom:CC0)
