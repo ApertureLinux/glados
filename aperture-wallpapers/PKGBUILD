@@ -15,4 +15,6 @@ package() {
   install -Dm644 -t "$pkgdir/usr/share/backgrounds/aperturelinux/" img/*
   install -Dm644 -t "$pkgdir/usr/share/gnome-background-properties/" aperture-backgrounds.xml
   install -Dm644 -t "$pkgdir/usr/share/licenses/$pkgname/" LICENSE
+  mkdir -p "$pkgdir/usr/share/wallpapers"
+  ln -s "../backgrounds" "$pkgdir/usr/share/wallpapers/backgrounds"
 }
