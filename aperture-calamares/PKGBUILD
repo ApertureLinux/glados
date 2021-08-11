@@ -1,7 +1,7 @@
 # Maintainer : Zach Osman <zach@aperturelinux.org>
 
 pkgname=aperture-calamares
-pkgver=0.2.1
+pkgver=0.2.2
 pkgrel=1
 pkgdesc='Aperture Calamares Config'
 arch=('x86_64')
@@ -9,7 +9,7 @@ license=('GPL2')
 depends=('calamares')
 _commit="ea8fb9c539c9ea4f059dca6f3277780c658c39a0"
 source=("https://github.com/ApertureLinux/aperture-calamares/archive/${_commit}.zip")
-sha256sums=('5bf77293d7fbc3067a1b8b1a236c373dbb811cdb725d81effbcc6400260ed6a8')
+sha256sums=('63ed9c4861be48a4eb9613315b24aeb5b99eb5a1dc13fc01ae0aefd1f63e0db4')
 
 package() {
     /bin/cp -rf "$srcdir/aperture-calamares-${_commit}/"*"/" "$pkgdir/"
