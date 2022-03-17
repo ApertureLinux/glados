@@ -16,7 +16,7 @@ depends=('kconfig' 'kcoreaddons' 'kiconthemes' 'ki18n' 'kio' 'solid' 'yaml-cpp' 
 makedepends=('extra-cmake-modules' 'qt5-tools' 'qt5-translations' 'git' 'boost')
 
 source+=("$pkgname-$pkgver.tar.gz::$url/archive/v$pkgver.tar.gz")
-sha256sums=('7e4a10564ca17690534e4661db50799df82a3b3739c619fabbf25c1dd449a0be')
+sha256sums=('2d692042cbcfed79aea410d20276f07b05914fe65a00bc83170df0ee2cfae97d')
 
 build() {
 	cd ${srcdir}/calamares-${pkgver}
